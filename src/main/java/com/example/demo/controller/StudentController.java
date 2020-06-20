@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.Student;
+import com.example.demo.response.StudentResponse;
 import com.example.demo.service.StudentRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,8 +18,18 @@ public class StudentController {
     }
 
     @PostMapping("/addStudent")
-    public Student create(@RequestBody Student student) {
-        return studentService.save(student);
+    public StudentResponse create(@RequestBody Student student) {
+        StudentResponse response = new StudentResponse();
+        if (student.getFirstName().trim().isEmpty() || student.getLastName().trim().isEmpty()) {
+            response.setCode("BAD REQUEST");
+            response.setMessage("Invalid request body; new student record not created");
+        } else {
+            System.out.println("In successful flow");
+            response.setCode("OK");
+            response.setMessage("New student record has been created");
+        }
+        studentService.save(student);
+        return response;
     }
 
     @PutMapping("/updateStudent")
