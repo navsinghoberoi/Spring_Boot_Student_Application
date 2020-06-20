@@ -1,8 +1,10 @@
 package com.example.demo.model;
 
+import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "student")
@@ -11,8 +13,8 @@ public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    private String firstName;
-    private String lastName;
+    @NotBlank @NotNull private String firstName;
+    @NotBlank @NotNull private String lastName;
 
     public int getId() {
         return id;
