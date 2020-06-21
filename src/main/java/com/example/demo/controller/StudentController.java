@@ -1,14 +1,18 @@
 package com.example.demo.controller;
 
+import com.example.demo.Constants;
 import com.example.demo.model.Student;
 import com.example.demo.response.StudentResponse;
 import com.example.demo.service.StudentRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 public class StudentController {
 
+    StudentResponse response = new StudentResponse();
     @Autowired
     private StudentRepo studentService;
 
@@ -17,16 +21,28 @@ public class StudentController {
         return studentService.findAll();
     }
 
+    @GetMapping("/getStudentById/{id}")
+    public StudentResponse readStudentId(@PathVariable Integer id) {
+        if (studentService.exists(id)) {
+            response.setCode(Constants.SUCCESS_CODE);
+            response.setMessage(Constants.SUCCESS_MESSAGE);
+            response.setStudent(studentService.findOne(id));
+        } else {
+            response.setCode(Constants.FAILURE_CODE);
+            response.setMessage(Constants.FAILURE_MESSAGE);
+        }
+        return response;
+    }
+
+
     @PostMapping("/addStudent")
     public StudentResponse create(@RequestBody Student student) {
-        StudentResponse response = new StudentResponse();
         if (student.getFirstName().trim().isEmpty() || student.getLastName().trim().isEmpty()) {
-            response.setCode("BAD REQUEST");
-            response.setMessage("Invalid request body; new student record not created");
+            response.setCode(Constants.FAILURE_CODE);
+            response.setMessage(Constants.FAILURE_MESSAGE);
         } else {
-            System.out.println("In successful flow");
-            response.setCode("OK");
-            response.setMessage("New student record has been created");
+            response.setCode(Constants.SUCCESS_CODE);
+            response.setMessage(Constants.SUCCESS_MESSAGE);
         }
         studentService.save(student);
         return response;
