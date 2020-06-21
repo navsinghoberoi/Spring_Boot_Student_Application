@@ -22,7 +22,7 @@ public class StudentController {
     }
 
     @GetMapping("/getStudentById/{id}")
-    public StudentResponse readStudentId(@PathVariable Integer id) {
+    public StudentResponse readById(@PathVariable Integer id) {
         if (studentService.exists(id)) {
             response.setCode(Constants.SUCCESS_CODE);
             response.setMessage(Constants.SUCCESS_MESSAGE);
@@ -54,8 +54,16 @@ public class StudentController {
     }
 
     @DeleteMapping("deleteStudent/{id}")
-    public void delete(@PathVariable Integer id) {
-        studentService.delete(id);
+    public StudentResponse delete(@PathVariable Integer id) {
+        if (studentService.exists(id)) {
+            response.setCode(Constants.SUCCESS_CODE);
+            response.setMessage(Constants.SUCCESS_MESSAGE);
+            studentService.delete(id);
+        } else {
+            response.setCode(Constants.FAILURE_CODE);
+            response.setMessage(Constants.FAILURE_MESSAGE);
+        }
+        return response;
     }
 
 }
