@@ -1,0 +1,5 @@
+target/
+extentreport/
+.idea/
+*.log
+pom.xml
