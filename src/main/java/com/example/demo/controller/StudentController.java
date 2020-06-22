@@ -8,6 +8,8 @@ import com.example.demo.service.StudentRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 public class StudentController extends Student_Util {
 
@@ -25,10 +27,11 @@ public class StudentController extends Student_Util {
     @GetMapping("/getStudentById/{id}")
     public StudentResponse readById(@PathVariable Integer id) {
         if (studentService.exists(id)) {
-            success_case(response);
+            success_case(response, Constants.SUCCESS_MESSAGE);
             response.setStudent(studentService.findOne(id));
         } else {
-            failure_case(response);
+            failure_case(response, Constants.ID_NOT_EXISTS_FAILURE_MESSAGE);
+            response.setStudent(null);
         }
         return response;
     }
@@ -36,12 +39,11 @@ public class StudentController extends Student_Util {
     @PostMapping("/addStudent")
     public StudentResponse create(@RequestBody Student student) {
         if (student.getFirstName().trim().length() <= 2 || student.getLastName().trim().length() <= 2) {
-            failure_case(response);
+            failure_case(response, Constants.NAME_LENGTH_FAILURE_MESSAGE);
         } else if (!student.getPhoneNumber().matches("[789]\\d{9}")) {
-            failure_case(response);
-            System.out.println("phone number not valid");
+            failure_case(response, Constants.MOBILE_NUMBER_FAILURE_MESSAGE);
         } else {
-            success_case(response);
+            success_case(response, Constants.SUCCESS_MESSAGE);
             studentService.save(student);
         }
         return response;
@@ -55,10 +57,10 @@ public class StudentController extends Student_Util {
     @DeleteMapping("deleteStudent/{id}")
     public StudentResponse delete(@PathVariable Integer id) {
         if (studentService.exists(id)) {
-            success_case(response);
+            success_case(response, Constants.SUCCESS_MESSAGE);
             studentService.delete(id);
         } else {
-            failure_case(response);
+            failure_case(response, Constants.ID_NOT_EXISTS_FAILURE_MESSAGE);
         }
         return response;
     }
