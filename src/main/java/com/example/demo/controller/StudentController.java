@@ -8,6 +8,7 @@ import com.example.demo.service.StudentRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Iterator;
 import java.util.List;
 
 @RestController
@@ -42,18 +43,19 @@ public class StudentController extends Student_Util {
 
     @GetMapping("/getByNumber/{phoneNumber}")
     public StudentResponse readByPhoneNumber(@PathVariable String phoneNumber) {
-        Iterable<Student> student_list = studentService.findAll();
-        for (Student student : student_list) {
-            student = student_list.iterator().next();
-            if (student.getPhoneNumber().equals(phoneNumber)) {
-                success_case(response, Constants.SUCCESS_MESSAGE);
-                response.setStudent(student);
-                response.setExtraInfo(null);
-                break;
-            } else {
+        Iterator<Student> student_list = studentService.findAll().iterator();
+        while (student_list.hasNext()) {
+            Student student = student_list.next();
+            //    System.out.println("Student data in iteration => " + student.getPhoneNumber());
+            if (!student.getPhoneNumber().equals(phoneNumber)) {
                 failure_case(response, Constants.PHONE_NUMBER_NOT_EXISTS_FAILURE_MESSAGE);
                 response.setStudent(null);
                 response.setExtraInfo(null);
+            } else if (student.getPhoneNumber().equals(phoneNumber)) {
+                success_case(response, Constants.SUCCESS_MESSAGE);
+                response.setStudent(student);
+                response.setExtraInfo(null);
+                return response;
             }
         }
         return response;
