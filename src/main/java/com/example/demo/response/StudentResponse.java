@@ -5,8 +5,17 @@ import com.example.demo.model.Student;
 public class StudentResponse {
 
     private String message;
-    private String code;
+    private Object code;
     private Student student;
+    private Object extraInfo;
+
+    public Object getExtraInfo() {
+        return extraInfo;
+    }
+
+    public void setExtraInfo(Object extraInfo) {
+        this.extraInfo = extraInfo;
+    }
 
     public Student getStudent() {
         return student;
@@ -24,11 +33,11 @@ public class StudentResponse {
         this.message = message;
     }
 
-    public String getCode() {
+    public Object getCode() {
         return code;
     }
 
-    public void setCode(String code) {
+    public void setCode(Object code) {
         this.code = code;
     }
 }

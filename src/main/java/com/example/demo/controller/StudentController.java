@@ -16,8 +16,10 @@ public class StudentController extends Student_Util {
     private StudentRepo studentService;
 
     @GetMapping("/getStudents")
-    public Iterable<Student> read() {
-        return studentService.findAll();
+    public StudentResponse read() {
+        response.setMessage("Total no. of records found are =>" + studentService.count());
+        response.setExtraInfo(studentService.findAll());
+        return response;
     }
 
     @GetMapping("/getStudentById/{id}")
