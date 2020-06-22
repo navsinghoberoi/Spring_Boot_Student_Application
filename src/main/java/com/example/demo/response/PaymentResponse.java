@@ -2,7 +2,7 @@ package com.example.demo.response;
 
 public class PaymentResponse {
 
-    private String message;
+   /* private String message;
     private Integer code;
     private double updatedWalletBalance;
 
@@ -28,5 +28,5 @@ public class PaymentResponse {
 
     public void setCode(Integer code) {
         this.code = code;
-    }
+    }*/
 }

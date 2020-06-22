@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class PaymentController {
-
+/*
     private static final double walletBalance = 100.0;
     private static final String secretKey = "SECRET_KEY";
     private static final String SUCCESS_STATUS = "success ";
@@ -40,5 +40,5 @@ public class PaymentController {
             response.setCode(CODE_FAILURE);
         }
         return response;
-    }
+    }*/
 }

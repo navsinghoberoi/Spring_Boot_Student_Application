@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class MessageController {
 
-    @GetMapping("/get/message")
+   /* @GetMapping("/get/message")
     public Message send() {
         return new Message("printing response from GET api ");
     }
@@ -16,7 +16,7 @@ public class MessageController {
     @PostMapping("/echo/message")
     public Message echo(@RequestBody Message message) {
         return message;
-    }
+    }*/
 
 
 }

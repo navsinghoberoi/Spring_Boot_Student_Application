@@ -13,8 +13,20 @@ public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    @NotBlank @NotNull private String firstName;
-    @NotBlank @NotNull private String lastName;
+    @NotBlank @NotNull
+    private String firstName;
+    @NotBlank @NotNull
+    private String lastName;
+
+    public Student(int id, String firstName, String lastName) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
+    public Student() {
+
+    }
 
     public int getId() {
         return id;
@@ -47,15 +59,5 @@ public class Student {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 '}';
-    }
-
-    public Student(int id, String firstName, String lastName) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
-
-    public Student() {
-
     }
 }

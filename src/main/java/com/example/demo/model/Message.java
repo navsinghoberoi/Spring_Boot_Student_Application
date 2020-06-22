@@ -2,7 +2,7 @@ package com.example.demo.model;
 
 public class Message {
 
-    private String message;
+   /* private String message;
 
     public Message(String message) {
         this.message = message;
@@ -18,5 +18,5 @@ public class Message {
 
     public void setMessage(String message) {
         this.message = message;
-    }
+    }*/
 }

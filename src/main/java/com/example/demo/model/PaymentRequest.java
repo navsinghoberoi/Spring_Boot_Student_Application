@@ -2,7 +2,7 @@ package com.example.demo.model;
 
 public class PaymentRequest {
 
-    private int userId;
+    /*private int userId;
     private String itemId;
     private double price=100.0;
 
@@ -30,6 +30,6 @@ public class PaymentRequest {
     public void setPrice(double price) {
         this.price = price;
     }
-
+*/
 
 }
