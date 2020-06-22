@@ -11,32 +11,55 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/student")
 public class StudentController extends Student_Util {
 
     public StudentResponse response = new StudentResponse();
     @Autowired
     private StudentRepo studentService;
 
-    @GetMapping("/getStudents")
+
+    @GetMapping("/getAll")
     public StudentResponse read() {
         response.setMessage("Total no. of records found are => " + studentService.count());
         response.setExtraInfo(studentService.findAll());
         return response;
     }
 
-    @GetMapping("/getStudentById/{id}")
+    @GetMapping("/getById/{id}")
     public StudentResponse readById(@PathVariable Integer id) {
         if (studentService.exists(id)) {
             success_case(response, Constants.SUCCESS_MESSAGE);
             response.setStudent(studentService.findOne(id));
+            response.setExtraInfo(null);
         } else {
             failure_case(response, Constants.ID_NOT_EXISTS_FAILURE_MESSAGE);
             response.setStudent(null);
+            response.setExtraInfo(null);
         }
         return response;
     }
 
-    @PostMapping("/addStudent")
+    @GetMapping("/getByNumber/{phoneNumber}")
+    public StudentResponse readByPhoneNumber(@PathVariable String phoneNumber) {
+        Iterable<Student> student_list = studentService.findAll();
+        for (Student student : student_list) {
+            student = student_list.iterator().next();
+            if (student.getPhoneNumber().equals(phoneNumber)) {
+                success_case(response, Constants.SUCCESS_MESSAGE);
+                response.setStudent(student);
+                response.setExtraInfo(null);
+                break;
+            } else {
+                failure_case(response, Constants.PHONE_NUMBER_NOT_EXISTS_FAILURE_MESSAGE);
+                response.setStudent(null);
+                response.setExtraInfo(null);
+            }
+        }
+        return response;
+    }
+
+    @PostMapping("/add")
     public StudentResponse create(@RequestBody Student student) {
         if (student.getFirstName().trim().length() <= 2 || student.getLastName().trim().length() <= 2) {
             failure_case(response, Constants.NAME_LENGTH_FAILURE_MESSAGE);
@@ -49,12 +72,12 @@ public class StudentController extends Student_Util {
         return response;
     }
 
-    @PutMapping("/updateStudent")
+    @PutMapping("/update")
     public Student update(@RequestBody Student student) {
         return studentService.save(student);
     }
 
-    @DeleteMapping("deleteStudent/{id}")
+    @DeleteMapping("delete/{id}")
     public StudentResponse delete(@PathVariable Integer id) {
         if (studentService.exists(id)) {
             success_case(response, Constants.SUCCESS_MESSAGE);

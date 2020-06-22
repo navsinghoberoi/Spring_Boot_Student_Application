@@ -23,11 +23,12 @@ To start the application on the server, run the following command -
 **mvn spring-boot:run**
 
 # CRUD api endpoints for student application :
-1. http://localhost:8080/getStudents
-2. http://localhost:8080/getStudentById/{id}
-3. http://localhost:8080/addStudent
-4. http://localhost:8080/updateStudent
-5. http://localhost:8080/deleteStudent/{id}
+1. http://localhost:8080/student/getAll
+2. http://localhost:8080/student/getById/{id}
+3. http://localhost:8080/student/getByNumber/{phoneNumber}
+4. http://localhost:8080/student/add
+5. http://localhost:8080/student/update
+6. http://localhost:8080/student/delete/{id}
 
 # Built With :
 1. Spring Boot

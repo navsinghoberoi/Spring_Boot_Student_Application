@@ -10,7 +10,7 @@ import javax.validation.constraints.NotNull;
 @Table(name = "student")
 @EnableAutoConfiguration
 public class Student {
-    @Column(unique = true)
+    @Column(unique = true,name = "phone_number")
     @NotBlank
     @NotNull
     String phoneNumber;

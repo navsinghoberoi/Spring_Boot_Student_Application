@@ -9,4 +9,5 @@ public class Constants {
     public static final String NAME_LENGTH_FAILURE_MESSAGE= "Please enter valid data in first name / last name";
     public static final String MOBILE_NUMBER_FAILURE_MESSAGE= "Please enter valid mobile number ";
     public static final String ID_NOT_EXISTS_FAILURE_MESSAGE= "Please enter valid ID";
+    public static final String PHONE_NUMBER_NOT_EXISTS_FAILURE_MESSAGE= "Please enter phone number already linked with a record";
 }
