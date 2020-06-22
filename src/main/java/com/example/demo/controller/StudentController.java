@@ -17,7 +17,7 @@ public class StudentController extends Student_Util {
 
     @GetMapping("/getStudents")
     public StudentResponse read() {
-        response.setMessage("Total no. of records found are =>" + studentService.count());
+        response.setMessage("Total no. of records found are => " + studentService.count());
         response.setExtraInfo(studentService.findAll());
         return response;
     }
@@ -35,8 +35,11 @@ public class StudentController extends Student_Util {
 
     @PostMapping("/addStudent")
     public StudentResponse create(@RequestBody Student student) {
-        if (student.getFirstName().trim().isEmpty() || student.getLastName().trim().isEmpty()) {
+        if (student.getFirstName().trim().length() <= 2 || student.getLastName().trim().length() <= 2) {
             failure_case(response);
+        } else if (!student.getPhoneNumber().matches("[789]\\d{9}")) {
+            failure_case(response);
+            System.out.println("phone number not valid");
         } else {
             success_case(response);
             studentService.save(student);

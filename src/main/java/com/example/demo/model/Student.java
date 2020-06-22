@@ -10,22 +10,37 @@ import javax.validation.constraints.NotNull;
 @Table(name = "student")
 @EnableAutoConfiguration
 public class Student {
+    @Column(unique = true)
+    @NotBlank
+    @NotNull
+    String phoneNumber;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    @NotBlank @NotNull
+    @NotBlank
+    @NotNull
     private String firstName;
-    @NotBlank @NotNull
+    @NotBlank
+    @NotNull
     private String lastName;
 
-    public Student(int id, String firstName, String lastName) {
+    public Student(int id, String firstName, String lastName, String phoneNumber) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
     }
 
     public Student() {
 
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public int getId() {
@@ -58,6 +73,7 @@ public class Student {
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
+                ", phoneNumber=" + phoneNumber +
                 '}';
     }
 }
