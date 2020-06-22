@@ -24,9 +24,10 @@ To start the application on the server, run the following command -
 
 # CRUD api endpoints for student application :
 1. http://localhost:8080/getStudents
-2. http://localhost:8080/addStudent
-3. http://localhost:8080/updateStudent
-4. http://localhost:8080/deleteStudent/{id}
+2. http://localhost:8080/getStudentById/{id}
+3. http://localhost:8080/addStudent
+4. http://localhost:8080/updateStudent
+5. http://localhost:8080/deleteStudent/{id}
 
 # Built With :
 1. Spring Boot
@@ -39,7 +40,7 @@ To start the application on the server, run the following command -
 Navpreet Singh
 
 # Structure of the packages :
-Remember below mentioned points before creating new classes -- 
+Remember below mentioned points before creating new classes --       
 a) Adding controller class for an entity --                                                           
 To add controller class, go to /src/main/java/com/example/demo/controller folder and create a new file with suffix as Controller
 

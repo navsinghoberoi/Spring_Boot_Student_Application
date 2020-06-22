@@ -1,18 +1,17 @@
 package com.example.demo.controller;
 
-import com.example.demo.Constants;
+import util.Student_Util;
+import util.Constants;
 import com.example.demo.model.Student;
 import com.example.demo.response.StudentResponse;
 import com.example.demo.service.StudentRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
-public class StudentController {
+public class StudentController extends Student_Util {
 
-    StudentResponse response = new StudentResponse();
+    public StudentResponse response = new StudentResponse();
     @Autowired
     private StudentRepo studentService;
 
@@ -24,27 +23,22 @@ public class StudentController {
     @GetMapping("/getStudentById/{id}")
     public StudentResponse readById(@PathVariable Integer id) {
         if (studentService.exists(id)) {
-            response.setCode(Constants.SUCCESS_CODE);
-            response.setMessage(Constants.SUCCESS_MESSAGE);
+            success_case(response);
             response.setStudent(studentService.findOne(id));
         } else {
-            response.setCode(Constants.FAILURE_CODE);
-            response.setMessage(Constants.FAILURE_MESSAGE);
+            failure_case(response);
         }
         return response;
     }
 
-
     @PostMapping("/addStudent")
     public StudentResponse create(@RequestBody Student student) {
         if (student.getFirstName().trim().isEmpty() || student.getLastName().trim().isEmpty()) {
-            response.setCode(Constants.FAILURE_CODE);
-            response.setMessage(Constants.FAILURE_MESSAGE);
+            failure_case(response);
         } else {
-            response.setCode(Constants.SUCCESS_CODE);
-            response.setMessage(Constants.SUCCESS_MESSAGE);
+            success_case(response);
+            studentService.save(student);
         }
-        studentService.save(student);
         return response;
     }
 
@@ -56,12 +50,10 @@ public class StudentController {
     @DeleteMapping("deleteStudent/{id}")
     public StudentResponse delete(@PathVariable Integer id) {
         if (studentService.exists(id)) {
-            response.setCode(Constants.SUCCESS_CODE);
-            response.setMessage(Constants.SUCCESS_MESSAGE);
+            success_case(response);
             studentService.delete(id);
         } else {
-            response.setCode(Constants.FAILURE_CODE);
-            response.setMessage(Constants.FAILURE_MESSAGE);
+            failure_case(response);
         }
         return response;
     }
