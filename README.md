@@ -42,6 +42,7 @@ To start the application on the server, run the following command -
 4. Git
 5. my-sql db
 6. Sonarqube
+7. Docker
 
 # Author :
 Navpreet Singh
