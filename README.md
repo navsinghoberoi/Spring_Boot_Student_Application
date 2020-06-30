@@ -35,7 +35,7 @@ To start the application on the server, run the following command -
 2. Run the command **docker-compose up -d** (Make sure docker is running on machine)
 3. Go to browser and open **localhost:9000**, sign in via admin account and generate a token.
 4. Go to Administration > Analysis Scope > Test File Inclusions --> Enter **/*Test*/** in the pattern 
-5. Go to base path of project & run the command to perform analysis **mvn clean install sonar:sonar -Dsonar.host.url=http://localhost:9000 -Dsonar.login=xyz** 
+5. Go to base path of project & run the command to perform analysis **mvn clean install sonar:sonar -Dsonar.host.url=http://localhost:9000 -Dsonar.login=token** 
 
 # Built With :
 1. Spring Boot
