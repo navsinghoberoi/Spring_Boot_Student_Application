@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="TestNG With Retry Listener"
+       allow-return-values="true">
+    <test name="Unit test cases">
+        <classes>
+            <class name="test.java.CRUDStudentTest">
+                <methods>
+                    <include name="createStudentTest"/>
+                    <include name="getAllStudents"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+</suite>

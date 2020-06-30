@@ -6,8 +6,8 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="repo" />
         <module name="Spring_Boot_Student_Application" />
+        <module name="repo" />
       </profile>
     </annotationProcessing>
   </component>
