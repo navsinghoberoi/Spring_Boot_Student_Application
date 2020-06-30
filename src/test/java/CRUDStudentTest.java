@@ -1,12 +1,8 @@
 package test.java;
 
-import io.restassured.RestAssured;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import com.example.demo.model.Student;
-import com.example.demo.response.StudentResponse;
-
 
 public class CRUDStudentTest {
 
@@ -22,9 +18,4 @@ public class CRUDStudentTest {
         Assert.assertEquals("test1", student.getLastName());
     }
 
- /*   @Test(priority = 2)
-    public void getAllStudents() {
-        String response = RestAssured.given().when().get("http://localhost:8080/student/getAll").getBody().asString();
-        System.out.println("Api response of get all students => " + response);
-    }*/
 }
