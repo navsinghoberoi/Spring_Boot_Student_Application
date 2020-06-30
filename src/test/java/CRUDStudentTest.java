@@ -13,7 +13,6 @@ public class CRUDStudentTest {
         Assert.assertEquals("nav", student.getFirstName());
         Assert.assertEquals("test", student.getLastName());
         Assert.assertEquals("9999102012", student.getPhoneNumber());
-
         student.setLastName("test1");
         Assert.assertEquals("test1", student.getLastName());
     }
