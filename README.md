@@ -60,3 +60,10 @@ To add model class, go to /src/main/java/com/example/demo/model folder and creat
 
 c) Adding service class for an entity -->                                                              
 To add model class, go to /src/main/java/com/example/demo/service folder and create a new file
+
+
+# Sample static code and code coverage reports generated :
+
+<img width="940" alt="jacocoCoverageReport" src="https://user-images.githubusercontent.com/21955275/86102014-a5779000-bad8-11ea-8641-979ea39d8e74.png">
+
+<img width="884" alt="sonarQubeWithTestCoverage" src="https://user-images.githubusercontent.com/21955275/86102051-af00f800-bad8-11ea-8ade-2a807ef8430f.png">
