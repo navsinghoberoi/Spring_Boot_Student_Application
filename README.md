@@ -46,6 +46,7 @@ To start the application on the server, run the following command -
 6. Sonarqube
 7. Docker
 8. Jacoco
+9. Renovate (Automated dependency updates)
 
 # Author :
 Navpreet Singh
