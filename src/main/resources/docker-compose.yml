@@ -2,7 +2,7 @@ version: "3"
 
 services:
   sonarqube:
-    image: sonarqube:6.7.1
+    image: sonarqube:6.7.5
     expose:
       - 9000
     ports:
